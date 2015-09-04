@@ -93,11 +93,6 @@ int OpenEmu_KeysMapping[] =
 
 - (void)setupEmulation
 {
-    NSString *appSupportPath = [[[[NSHomeDirectory() stringByAppendingPathComponent:@"Library"]
-                                  stringByAppendingPathComponent:@"Application Support"]
-                                  stringByAppendingPathComponent:@"OpenEmu"]
-                                  stringByAppendingPathComponent:@"BIOS"];
-    PokeMini_InitDirs((char*)[appSupportPath UTF8String], NULL);
     CommandLineInit();
     CommandLine.palette = 2;
     CommandLine.lcdfilter = 1;
@@ -113,6 +108,12 @@ int OpenEmu_KeysMapping[] =
     if(!PokeMini_Create(0, PMSOUNDBUFF))
     {
         NSLog(@"Error while initializing emulator.");
+    }
+    
+    PokeMini_GotoCustomDir((char*)[[self biosDirectoryPath] UTF8String]);
+    if(FileExist(CommandLine.bios_file))
+    {
+        PokeMini_LoadBIOSFile(CommandLine.bios_file);
     }
     
     [self EEPROMSetup];
