@@ -36,7 +36,7 @@
 @interface PokeMiniGameCore () <OEPMSystemResponderClient>
 {
     uint8_t *audioStream;
-    uint16_t *videoBuffer;
+    uint32_t *videoBuffer;
     int videoWidth, videoHeight;
     NSString *romPath;
 }
@@ -66,7 +66,7 @@ int OpenEmu_KeysMapping[] =
 
 - (id)init
 {
-    if (self = [super init])
+    if(self = [super init])
     {
         videoWidth = 96;
         videoHeight = 64;
@@ -94,13 +94,10 @@ int OpenEmu_KeysMapping[] =
 - (void)setupEmulation
 {
     CommandLineInit();
-    CommandLine.palette = 2;
-    CommandLine.lcdfilter = 1;
-    CommandLine.lcdmode = LCDMODE_3SHADES;
     CommandLine.eeprom_share = 1;
     
     // Set video spec and check if is supported
-    if(!PokeMini_SetVideo((TPokeMini_VideoSpec *)&PokeMini_Video1x1, 16, CommandLine.lcdfilter, CommandLine.lcdmode))
+    if(!PokeMini_SetVideo((TPokeMini_VideoSpec *)&PokeMini_Video1x1, 32, CommandLine.lcdfilter, CommandLine.lcdmode))
     {
         NSLog(@"Couldn't set video spec.");
     }
@@ -110,7 +107,7 @@ int OpenEmu_KeysMapping[] =
         NSLog(@"Error while initializing emulator.");
     }
     
-    PokeMini_GotoCustomDir((char*)[[self biosDirectoryPath] UTF8String]);
+    PokeMini_GotoCustomDir([[self biosDirectoryPath] UTF8String]);
     if(FileExist(CommandLine.bios_file))
     {
         PokeMini_LoadBIOSFile(CommandLine.bios_file);
@@ -186,12 +183,14 @@ int saveEEPROM(const char *filename)
     // Emulate 1 frame
     PokeMini_EmulateFrame();
     
-    // Screen rendering if LCD changes
-    if (LCDDirty)
+    if(PokeMini_Rumbling) {
+        PokeMini_VideoBlit(videoBuffer + PokeMini_GenRumbleOffset(current->videoWidth), current->videoWidth);
+    }
+    else
     {
         PokeMini_VideoBlit(videoBuffer, current->videoWidth);
-        LCDDirty--;
     }
+    LCDDirty = 0;
     
     MinxAudio_GetSamplesU8(audioStream, PMSOUNDBUFF);
     [[current ringBufferAtIndex:0] write:audioStream maxLength:PMSOUNDBUFF];
@@ -264,12 +263,12 @@ int saveEEPROM(const char *filename)
 
 - (GLenum)pixelType
 {
-    return GL_UNSIGNED_SHORT_1_5_5_5_REV;
+    return GL_UNSIGNED_INT_8_8_8_8_REV;
 }
 
 - (GLenum)internalPixelFormat
 {
-    return GL_RGB16;
+    return GL_RGB8;
 }
 
 - (NSTimeInterval)frameInterval
