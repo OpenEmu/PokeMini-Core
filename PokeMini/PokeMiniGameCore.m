@@ -72,7 +72,7 @@ int OpenEmu_KeysMapping[] =
         videoHeight = 64;
         
         audioStream = malloc(PMSOUNDBUFF);
-        videoBuffer = malloc(videoWidth*videoWidth*4);
+        videoBuffer = malloc(videoWidth*videoHeight*4);
         memset(videoBuffer, 0, videoWidth*videoHeight*4);
         memset(audioStream, 0, PMSOUNDBUFF);
     }
@@ -117,7 +117,7 @@ int OpenEmu_KeysMapping[] =
     
     JoystickSetup("OpenEmu", 0, 30000, NULL, 12, OpenEmu_KeysMapping);
     
-    PokeMini_VideoPalette_Init(PokeMini_RGB16, 0);
+    PokeMini_VideoPalette_Init(PokeMini_RGB32, 0);
     PokeMini_VideoPalette_Index(CommandLine.palette, CommandLine.custompal, CommandLine.lcdcontrast, CommandLine.lcdbright);
     PokeMini_ApplyChanges();
     PokeMini_UseDefaultCallbacks();
