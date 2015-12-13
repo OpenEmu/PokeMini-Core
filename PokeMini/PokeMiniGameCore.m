@@ -178,7 +178,7 @@ int saveEEPROM(const char *filename)
     return YES;
 }
 
-- (void)executeFrameSkippingFrame:(BOOL)skip
+- (void)executeFrame
 {
     // Emulate 1 frame
     PokeMini_EmulateFrame();
@@ -194,11 +194,6 @@ int saveEEPROM(const char *filename)
     
     MinxAudio_GetSamplesU8(audioStream, PMSOUNDBUFF);
     [[current ringBufferAtIndex:0] write:audioStream maxLength:PMSOUNDBUFF];
-}
-
-- (void)executeFrame
-{
-    [self executeFrameSkippingFrame:NO];
 }
 
 - (void)startEmulation
@@ -224,14 +219,14 @@ int saveEEPROM(const char *filename)
 
 #pragma mark - Save State
 
-- (BOOL)saveStateToFileAtPath:(NSString *)fileName
+- (void)saveStateToFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
-    return PokeMini_SaveSSFile([fileName UTF8String], [romPath UTF8String]) ? YES : NO;
+    block(PokeMini_SaveSSFile(fileName.fileSystemRepresentation, romPath.fileSystemRepresentation) ? YES : NO, nil);
 }
 
-- (BOOL)loadStateFromFileAtPath:(NSString *)fileName
+- (void)loadStateFromFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
-    return PokeMini_LoadSSFile([fileName UTF8String]) ? YES : NO;
+    block(PokeMini_LoadSSFile(fileName.fileSystemRepresentation) ? YES : NO, nil);
 }
 
 #pragma mark - Video
