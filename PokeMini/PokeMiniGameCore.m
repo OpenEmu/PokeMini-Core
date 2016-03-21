@@ -198,11 +198,10 @@ int saveEEPROM(const char *filename)
 
 - (void)startEmulation
 {
-    if(!isRunning)
-    {
-        [super startEmulation];
-        PokeMini_LoadROM((char*)[romPath UTF8String]);
-    }
+    if(self.rate != 0) return;
+
+    [super startEmulation];
+    PokeMini_LoadROM((char*)[romPath UTF8String]);
 }
 
 - (void)stopEmulation
