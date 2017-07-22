@@ -183,6 +183,7 @@
 				081A458D1B955FA800565444 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		081A458D1B955FA800565444 /* Products */ = {
 			isa = PBXGroup;

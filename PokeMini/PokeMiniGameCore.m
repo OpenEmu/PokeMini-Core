@@ -245,9 +245,9 @@ int saveEEPROM(const char *filename)
     return OEIntSizeMake(videoWidth, videoHeight);
 }
 
-- (const void *)videoBuffer
+- (const void *)getVideoBufferWithHint:(void *)hint
 {
-    return videoBuffer;
+    return videoBuffer = (hint ?: videoBuffer);
 }
 
 - (GLenum)pixelFormat
@@ -258,11 +258,6 @@ int saveEEPROM(const char *filename)
 - (GLenum)pixelType
 {
     return GL_UNSIGNED_INT_8_8_8_8_REV;
-}
-
-- (GLenum)internalPixelFormat
-{
-    return GL_RGB8;
 }
 
 - (NSTimeInterval)frameInterval
