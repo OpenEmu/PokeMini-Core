@@ -137,7 +137,7 @@
 		081A45D01B95605F00565444 /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Video.h; path = "PokeMini/pokemini-code/source/Video.h"; sourceTree = SOURCE_ROOT; };
 		081A45F81B95640C00565444 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		081A45FA1B95641300565444 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		081A45FC1B95642A00565444 /* OpenEmuBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEmuBase.framework; path = "/Users/hachidorii/Projects/repos/OpenEmu/VirtualJaguar/../../../../Library/Developer/Xcode/DerivedData/OpenEmu-bhfveylavlxwbkddelpdvazebykd/Build/Products/Debug/OpenEmuBase.framework"; sourceTree = "<absolute>"; };
+		081A45FC1B95642A00565444 /* OpenEmuBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		081A46001B9565DB00565444 /* PokeMini_BG2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PokeMini_BG2.c; path = "pokemini-code/resource/PokeMini_BG2.c"; sourceTree = "<group>"; };
 		081A46011B9565DB00565444 /* PokeMini_BG2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PokeMini_BG2.h; path = "pokemini-code/resource/PokeMini_BG2.h"; sourceTree = "<group>"; };
 		081A46021B9565DB00565444 /* PokeMini_BG3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = PokeMini_BG3.c; path = "pokemini-code/resource/PokeMini_BG3.c"; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 			};
 			buildConfigurationList = 081A45871B955FA800565444 /* Build configuration list for PBXProject "PokeMini" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
