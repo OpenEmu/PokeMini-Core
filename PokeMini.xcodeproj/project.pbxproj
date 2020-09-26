@@ -538,11 +538,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/OpenEmu-emamunmvrfzskqcbxvztfjcwdnba/Build/Products/Debug",
-					"/Users/hachidorii/Projects/repos/OpenEmu/VirtualJaguar/../../../../Library/Developer/Xcode/DerivedData/OpenEmu-bhfveylavlxwbkddelpdvazebykd/Build/Products/Debug",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NO_ZIP=1",
 					"DEBUG=1",
@@ -562,11 +557,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/OpenEmu-emamunmvrfzskqcbxvztfjcwdnba/Build/Products/Debug",
-					"/Users/hachidorii/Projects/repos/OpenEmu/VirtualJaguar/../../../../Library/Developer/Xcode/DerivedData/OpenEmu-bhfveylavlxwbkddelpdvazebykd/Build/Products/Debug",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = "NO_ZIP=1";
 				INFOPLIST_FILE = "PokeMini/PokeMini-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
